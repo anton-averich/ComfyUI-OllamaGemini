@@ -9,7 +9,7 @@ def get_api_keys():
         config_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'config.json')
         with open(config_path, 'r') as f:
             config = json.load(f)
-        gemini_api_key = config.get("GEMINI_API_KEY", "")
+        gemini_api_key = os.getenv("GEMINI_API_KEY") or config.get("GEMINI_API_KEY", "")
         openai_api_key = config.get("OPENAI_API_KEY", "")
         return gemini_api_key, openai_api_key
     except Exception as e:
